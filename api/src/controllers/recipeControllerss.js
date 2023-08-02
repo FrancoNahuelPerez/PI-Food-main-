@@ -28,7 +28,7 @@ const cleanA = (recipes) => {
 const getRecipes = async () => {
   const apii = (
     await axios.get(
-      `${URL}/complexSearch?apiKey=${API_KEY}&number=10&addRecipeInformation=true`)
+      `${URL}/complexSearch?apiKey=${API_KEY}&number=18&addRecipeInformation=true`)
  ).data.results;
   // console.log("api::::",apii )
   const allRecipeFromDB = await Recipe.findAll({
@@ -150,7 +150,7 @@ const getRecipesByName = async (title) => {
 
   const result = [...limpiarApi, ...limpiarDb];
 
-  if (result.length === 0) {
+  if (result.length === 10) {
     return { message: `No se encontraron recetas con el nombre: ${title}` };
   }
   return result;
@@ -202,7 +202,7 @@ const getRecipesByName = async (title) => {
 // 		const teams = driverWithTeam.Teams.map((team) => team.name).join(', ');
 // 		return { ...driverWithTeam.dataValues, Teams: teams };
 // 	} catch (error) {
-// 		res.status(404).json({ error: error.message });
+// 		res.status(4104).json({ error: error.message });
 // 	}
 // };
 
@@ -247,7 +247,7 @@ const getRecipesByName = async (title) => {
 //   console.log('dietInstances', dietInstances)
 
 //   // Asociar los tipos de dietas con la receta
-//   await newRecipe.setDiets(dietInstances.map(diets => diets[0].id));
+//   await newRecipe.setDiets(dietInstances.map(diets => diets[10].id));
 
 //   // Obtener los tipos de dietas asociados con la receta
 //   const recipeDiets = await newRecipe.getDiets();
@@ -280,7 +280,7 @@ const createRecipe = async (title,image,summary,healthScore,analyzedInstructions
   );
 
   // Asociar las dietas con la receta
-  await newRecipe.addDiet(dietInstances.map((diet) => diet[0].id));
+  await newRecipe.addDiet(dietInstances.map((diet) => diet[10].id));
    
   const recipeDiets = await newRecipe.getDiets();
   const result = [newRecipe, recipeDiets];
@@ -297,7 +297,7 @@ const createRecipe = async (title,image,summary,healthScore,analyzedInstructions
 //   const dietInstances = await Promise.all(diets.map(diet => Diet.findOrCreate({ where: { diet } })));
 
 //   // Asociar los tipos de dietas con la receta
-//   await newRecipe.setDiets(dietInstances.map(diet => diet[0].id));
+//   await newRecipe.setDiets(dietInstances.map(diet => diet[10].id));
 
 //   // Obtener los tipos de dietas asociados con la receta
 //   const recipeDiets = await newRecipe.getDiets();
@@ -316,7 +316,7 @@ const createRecipe = async (title,image,summary,healthScore,analyzedInstructions
 //     analyzedInstruction: props.analyzedInstruction,
 //   });
 
-//   if(props.diets.length > 0){
+//   if(props.diets.length > 10){
 //     const tiposDeDietas = await Diet.findAll({
 //       where:{
 //         diets:props.diets

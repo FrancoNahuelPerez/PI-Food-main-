@@ -1,0 +1,106 @@
+/* Estilos para el contenedor principal del Card */
+.cardContainer {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  /* Ajustamos el ancho máximo para que las cartas tengan el mismo ancho */
+  max-width: 180px; /* Reducimos el ancho máximo */
+  /* Ajustamos la altura para que todas las cartas tengan el mismo largo */
+  height: 280px; /* Reducimos la altura */
+  margin: 10px; /* Separación entre las cartas */
+  font-family: 'myFont', sans-serif; /* Cambiar la fuente a la fuente personalizada */
+}
+
+/* Resto de los estilos se mantienen igual */
+
+.cardContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #f0f0f0;
+}
+
+/* Estilos para el enlace del título */
+.cardContainer a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.cardContainer a:hover {
+  color: #555;
+}
+
+/* Estilos para el título */
+.cardContainer p {
+  font-size: 18px; /* Reducimos el tamaño de fuente */
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* Estilos para el puntaje de salud */
+.cardContainer .healthScore {
+  font-size: 16px; /* Reducimos el tamaño de fuente */
+  margin: 5px 0;
+  color: #666;
+}
+
+/* Estilos para la imagen */
+.cardContainer img {
+  width: 100%;
+  height: 120px; /* Reducimos la altura de las imágenes */
+  object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsionarla */
+  border-radius: 8px;
+  margin: 10px 0;
+  transition: transform 0.2s;
+}
+
+.cardContainer img:hover {
+  transform: scale(1.1); /* Aumentar el tamaño en un 10% */
+}
+
+/* Estilos para el contenedor de tipos de dieta */
+.cardContainer .dietTypes {
+  margin: 5px 0;
+  max-height: 60px; /* Reducimos la altura máxima del contenedor de tipos de dieta */
+  overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+}
+
+/* Estilos para la lista de tipos de dieta */
+.cardContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilos para los elementos de la lista */
+.cardContainer li {
+  font-size: 14px;
+  margin: 3px 0;
+  color: #666;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cardContainer:hover li {
+  opacity: 1;
+}
+
+/* Estilos para el contenido adicional (si es necesario) */
+.cardContainer .extraContent {
+  font-size: 14px;
+  color: #888;
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cardContainer:hover .extraContent {
+  opacity: 1;
+}

@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("./Utils/modern-white-background-free-vector.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; /* Agrega esta línea */
+    height: 100vh;
+    /* display: flex;
+    justify-content: center;
+    align-items: flex-start; */
+  }
+  

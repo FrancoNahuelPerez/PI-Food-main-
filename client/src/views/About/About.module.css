@@ -1,0 +1,33 @@
+.container {
+    max-width: 600px; /* Reducimos el ancho máximo */
+    margin: 0 auto;
+    padding: 15px; /* Reducimos el padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    font-size: 24px; /* Reducimos el tamaño de fuente */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px; /* Reducimos el margen inferior */
+  }
+  
+  img {
+    width: 100%;
+    max-height: 300px; /* Reducimos la altura máxima de la imagen */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Reducimos el margen inferior */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reducimos la intensidad de la sombra */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  img:hover {
+    transform: scale(1.05);
+  }
+  

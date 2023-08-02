@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Landing, Form, About, Home, Detail } from "./views/Index";
 import NavBar from "./Components/NavBar/NavBar";
-
+import "./index.css"
 
 
 function App() {

@@ -1,0 +1,50 @@
+/* Estilos para el contenedor principal del formulario */
+.form-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para el formulario */
+.form-container form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para los botones y select del formulario */
+.form-container form div,
+.form-container form select,
+.form-container form button {
+  margin: 5px;
+  font-size: 16px;
+  padding: 8px 12px;
+  border: none; /* Eliminamos los bordes */
+  border-radius: 20px; /* Redondeamos los bordes */
+  background-color: #f2f2f2; /* Gris más claro */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s; /* Animación de transición */
+  cursor: pointer; /* Cambiamos el cursor al pasar por encima */
+}
+
+/* Estilos para animar los botones y select del formulario al pasar el mouse */
+.form-container form div:hover,
+.form-container form select:hover,
+.form-container form button:hover {
+  transform: translateY(-2px); /* Movemos ligeramente hacia arriba */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #e0e0e0; /* Gris más claro al pasar el mouse */
+}
+
+/* Estilos para el botón de Reset Filters */
+.form-container form button {
+  background-color: #2196F3;
+  color: white;
+}
+
+/* Estilos para el botón de Reset Filters al pasar el mouse */
+.form-container form button:hover {
+  background-color: #1976D2;
+}

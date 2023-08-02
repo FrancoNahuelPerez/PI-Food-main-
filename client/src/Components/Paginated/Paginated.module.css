@@ -1,0 +1,51 @@
+/* Contenedor principal */
+.Pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Botones de paginación */
+.Pagination button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  font-size: 16px;
+  border: none;
+  background-color: #ccc; /* Gris */
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombreado */
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.Pagination button:hover {
+  background-color: #999; /* Gris oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombreado más oscuro */
+}
+
+/* Indicadores de página */
+.Pagination span {
+  padding: 8px 12px;
+  margin: 0 5px;
+  font-size: 16px;
+  border: 1px solid #ccc; /* Gris */
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombreado */
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.Pagination span:hover {
+  background-color: #999; /* Gris oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombreado más oscuro */
+  color: #fff;
+}
+
+/* Indicador de página activa */
+.Pagination span.active {
+  background-color: #999; /* Gris oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombreado más oscuro */
+  color: #fff;
+}

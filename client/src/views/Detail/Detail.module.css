@@ -1,0 +1,97 @@
+/* Estilos generales */
+body {
+  font-family: 'Roboto', sans-serif; /* Fuente Roboto para todo el documento */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para el contenedor principal */
+.container {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #f9f9f9;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.container:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para la información principal */
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para el título principal */
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Estilos para la imagen */
+img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+/* Estilos para el subtítulo */
+h3 {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Estilos para el contenido del artículo */
+article {
+  font-size: 18px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* Estilos para los pasos de la receta */
+.stepsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px;
+}
+
+/* Estilos para el número de paso */
+.step-number {
+  font-size: 20px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* Estilos para el contenido de los pasos */
+.step-content {
+  font-size: 18px;
+  color: #444;
+  line-height: 1.8;
+}
+
+/* Estilos para las dietas y health score */
+h3 {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 10px;
+}

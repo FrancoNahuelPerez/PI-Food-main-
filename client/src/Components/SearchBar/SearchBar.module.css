@@ -1,0 +1,36 @@
+/* SearchBar.module.css */
+
+/* Estilos para el contenedor principal */
+.SearchBar {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Estilos para el campo de búsqueda */
+  .SearchBar input {
+    padding: 8px 12px;
+    flex: 1;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  /* Estilos para el botón de búsqueda */
+  .SearchBar button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+  
+  /* Estilos para el mensaje de error */
+  .SearchBar p {
+    color: red;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  
+  /* Estilos adicionales si es necesario */
+  
