@@ -8,7 +8,7 @@ const createDiets = async () => {
   
   recetasFromApi = (
     await axios.get(
-      `${URL}/complexSearch?apiKey=${API_KEY}&number=18&addRecipeInformation=true`
+      `${URL}/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`
     )
   ).data.results;
   //Mapeo la propiedad diets y la guardo en un array

@@ -15,6 +15,7 @@ export default function CardConteiner() {
   const [currentPage, setCurrentPage] = useState(0);
   const [reset, setReset] = useState(false);
 
+  // Utilizamos el hook useEffect para restablecer la página actual y la bandera de reinicio cada vez que cambian las recetas o el reinicio
   useEffect(() => {
     setCurrentPage(0);
     setReset(false);
@@ -25,8 +26,10 @@ export default function CardConteiner() {
   };
 
   const renderCards = () => {
+    //calculamos el indice de inicio y fin de la pagina actual
     const startIndex = currentPage * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
+    //extraigo las recetas correspondientes de la pagina actual
     const currentRecipes = Array.isArray(recipes)
       ? recipes.slice(startIndex, endIndex)
       : [];

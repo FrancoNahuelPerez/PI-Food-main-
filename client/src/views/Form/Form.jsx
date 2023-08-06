@@ -2,16 +2,18 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { getDiets } from "../../Redux/actions";
 import { postRecipes } from "../../Redux/actions";
-import style from "./Form.module.css"
+import style from "./Form.module.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Form() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getDiets());
-  }, [dispatch]);
 
   const dietitas = useSelector((state) => state.diets);
 
+  const navigate = useNavigate();
+
+  const [error, setError] = useState({});
   const [form, setForm] = useState({
     title: "",
     summary: "",
@@ -20,14 +22,12 @@ export default function Form() {
     diets: [],
     image: "",
   });
-  const [error, setError] = useState({
-    title: "",
-    summary: "",
-    healthScore: "",
-    analyzedInstructions: "",
-    diets: "",
-    image: "",
-  });
+
+  useEffect(() => {
+    dispatch(getDiets());
+  }, [dispatch]);
+
+  const [stepCount, setStepCount] = useState(0);
 
   const changeSelectHandler = (event) => {
     const value = event.target.value;
@@ -35,30 +35,106 @@ export default function Form() {
       setForm({ ...form, diets: [...form.diets, value] });
     }
   };
+  
+  // Manejador de cambios del número de pasos en las instrucciones
+  const handleStepsChange = (event) => {
+    const { value } = event.target;
+    const stepsCount = parseInt(value);
+
+    if (!isNaN(stepsCount) && stepsCount >= 0 && stepsCount <= 10) {
+      const updatedSteps = [];
+
+      for (let i = 0; i < stepsCount; i++) {
+        updatedSteps.push({ step: "" });
+      }
+
+      setForm((prevForm) => ({
+        ...prevForm,
+        analyzedInstructions: updatedSteps,
+      }));
+      setStepCount(stepsCount);
+    }
+  };
+
+  // Manejador de cambios de un paso en las instrucciones
+  const handleStepChange = (index, value) => {
+    const updatedSteps = [...form.analyzedInstructions];
+    updatedSteps[index] = { step: value };
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      analyzedInstructions: updatedSteps,
+    }));
+
+    const newErrors = validation({
+      ...form,
+      analyzedInstructions: updatedSteps,
+    });
+    setError(newErrors);
+  };
+
   const changeHandler = (event) => {
+    const { name, value } = event.target;
     setForm({
       ...form,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
-    validation({
+  
+    const newErrors = validation({
       ...form,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
+    setError(newErrors);
   };
+  
+  
+  // Manejador del envío del formulario
   const submitHandler = (event) => {
-    if (!error.title) {
-      dispatch(postRecipes(form));
-      setForm({
-        title: "",
-        image: "",
-        summary: "",
-        analyzedInstructions: [],
-        diets: [],
-        healthScore: "",
-      });
-      alert("Se ha creado la receta");
+    event.preventDefault();
+
+    // Verificar si hay algún paso vacío
+    const hasEmptyStep = form.analyzedInstructions.some(
+      (step) => step.step.trim() === ""
+    );
+
+    if (hasEmptyStep) {
+      setError((prevErrors) => ({
+        ...prevErrors,
+        analyzedInstructions: "Please fill in all steps",
+      }));
+      return; // Evita que el formulario se envíe
     } else {
-      alert("No se ha podido crear la receta");
+      // Creación de las instrucciones analizadas para enviar al backend
+      const analyzedInstructions = [
+        {
+          name: "",
+          steps: form.analyzedInstructions.map((step, index) => ({
+            number: index + 1,
+            step: step.step,
+            ingredients: [],
+            equipment: [],
+          })),
+        },
+      ];
+
+      const updatedForm = {
+        ...form,
+        analyzedInstructions,
+      };
+
+      // Envío del formulario al servidor usando axios  
+    
+        // Envío del formulario al servidor usando axios
+        const res =  axios.post("http://localhost:3001/recipes", updatedForm);
+    
+        // Verificar si la respuesta del servidor es exitosa
+        if (res) {
+          alert(`The recipe was created successfully`);
+          navigate("/home"); // Redireccionar al home después de crear la receta
+        } else {
+          // Manejo de errores en caso de una respuesta no exitosa
+          alert(`The recipe has not been created.`);
+        }
     }
   };
 
@@ -70,7 +146,7 @@ export default function Form() {
     diets,
     image,
   }) => {
-    const newError = {}; // Crear un nuevo objeto para almacenar los errores para cada campo
+    const newError = {...error}; // Crear un nuevo objeto para almacenar los errores para cada campo
 
     if (!title) {
       newError.title = "Title cannot be empty";
@@ -125,15 +201,16 @@ export default function Form() {
         "Instruction cannot exceed 400 characters";
     }
 
-    setError(newError);
+    return newError
   };
 
   return (
     <form className={style["form-container"]} onSubmit={submitHandler}>
       <div>
         <h1>Create Recipes</h1>
-        <label>Title:</label>
+        <label htmlFor="title">Title:</label>
         <input
+          id="title"
           type="text"
           value={form.title}
           onChange={changeHandler}
@@ -172,16 +249,36 @@ export default function Form() {
         ></input>
         {error.image && <span>{error.image}</span>}
         <hr></hr>
-        <label>Instructions:</label>
-        <textarea
-          value={form.analyzedInstructions}
-          onChange={changeHandler}
-          name="analyzedInstructions"
-          placeholder="Insert Instruction"
-        />
+        <div>
+          <label htmlFor="steps">Steps For Recipe: </label>
+          <input
+            type="number"
+            id="steps"
+            name="steps"
+            value={form.analyzedInstructions.length}
+            min="0"
+            onChange={handleStepsChange}
+          />
+        </div>
+        <hr></hr>
         {error.analyzedInstructions && (
-          <span>{error.analyzedInstructions}</span>
+          <span className={style.error}> {error.analyzedInstructions}</span>
         )}
+        {form.analyzedInstructions.slice(0, stepCount).map((step, index) => (
+          <div key={index}>
+            <label htmlFor={`step-${index}`}>Step {index + 1}: </label>
+            <input
+              type="text"
+              id={`step-${index}`}
+              name={`step-${index}`}
+              value={step.step}
+              onChange={(event) => handleStepChange(index, event.target.value)}
+            />
+            {step.step.trim() === "" && (
+              <span className={style.error}>Step cannot be empty</span>
+            )}
+          </div>
+        ))}
         <hr></hr>
         <label htmlFor="diets">Diets:</label>
         <select name="diets" onChange={changeSelectHandler}>
