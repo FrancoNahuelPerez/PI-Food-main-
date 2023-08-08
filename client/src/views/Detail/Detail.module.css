@@ -1,32 +1,56 @@
 /* Estilos generales */
 body {
-  font-family: 'Roboto', sans-serif; /* Fuente Roboto para todo el documento */
-  line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
+}
+
+* {
   margin: 0;
   padding: 0;
 }
 
 /* Estilos para el contenedor principal */
 .container {
-  margin: 20px;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #f9f9f9;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 40px;
-  transition: box-shadow 0.3s ease-in-out;
+  display: flex;
+  /* justify-content: flex-start; /* Alineamos los elementos al comienzo de la pantalla */
+  /* align-items: flex-start; Alineamos los elementos en la parte superior */
+  /* flex-wrap: wrap; Agregamos flex-wrap para que los elementos se ajusten en varias líneas si es necesario */
+  /* flex-direction: column; */
+  height: 100vh;
+  width: 100vw;
 }
 
-.container:hover {
+/* .container:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
+} */
 
 /* Estilos para la información principal */
-.infoContainer {
+.infoColumn {
   display: flex;
   flex-direction: column;
+  width: 60%;
+  /* Ajustamos el ancho para dejar espacio para los pasos */
+  /* max-width: 800px; */
+  /* margin: 20px; */
+  height: 100vw;
+}
+
+.dietitas {
+  align-items: center;
+  display: flex;
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+
+.healthScore {
+  margin-right: 25px;
+}
+
+.dietitas>h4 {
+  background: #f9f9f9;
+  padding: 5px;
+  border-radius: 8px;
+  margin-top: 5px;
 }
 
 /* Estilos para el título principal */
@@ -34,16 +58,18 @@ h1 {
   font-size: 36px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 /* Estilos para la imagen */
 img {
-  width: 100%;
-  max-height: 400px;
+  width: 40%;
+  /* Reducimos el ancho de la imagen para dejar espacio para los pasos */
+  max-height: 500px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin-right: 20px;
+  /* Agregamos margen derecho para separar de los pasos */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
 }
@@ -69,13 +95,24 @@ article {
 
 /* Estilos para los pasos de la receta */
 .stepsContainer {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 40vw;
+  margin-top: 10px;
+}
+
+.step {
+  background: #f2f2f2;
+  margin: 5px;
+  border-radius: 10px;
+  padding: 10px;
+  height: fit-content;
+  width: 36vw;
 }
 
 /* Estilos para el número de paso */
-.step-number {
+.stepNumber {
   font-size: 20px;
   font-weight: bold;
   color: #555;
@@ -83,15 +120,10 @@ article {
 }
 
 /* Estilos para el contenido de los pasos */
-.step-content {
+.stepContent {
   font-size: 18px;
   color: #444;
   line-height: 1.8;
-}
-
-/* Estilos para las dietas y health score */
-h3 {
-  font-size: 24px;
-  color: #555;
-  margin-bottom: 10px;
+  margin-left: 10px;
+  /* Agregamos margen izquierdo para separar de la imagen */
 }

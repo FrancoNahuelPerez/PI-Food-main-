@@ -28,7 +28,7 @@ const cleanA = (recipes) => {
 const getRecipes = async () => {
   const apii = (
     await axios.get(
-      `${URL}/complexSearch?apiKey=${API_KEY}&number=10&addRecipeInformation=true`)
+      `${URL}/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`)
  ).data.results;
   // console.log("api::::",apii )
   const allRecipeFromDB = await Recipe.findAll({
@@ -95,7 +95,7 @@ const getRecipesByName = async (title) => {
   });
   const recetazzz = (
     await axios.get(
-      `${URL}/complexSearch?apiKey=${API_KEY}&number=10&query=${title}&addRecipeInformation=true`
+      `${URL}/complexSearch?apiKey=${API_KEY}&number=100&query=${title}&addRecipeInformation=true`
     )
   ).data.results;
 

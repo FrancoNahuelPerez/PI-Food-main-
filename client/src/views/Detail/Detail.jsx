@@ -22,28 +22,32 @@ export default function Detail() {
   }, [id]);
 
   // Corregimos el acceso a la variable currentSteps
-  const currentSteps = recipes.analyzedInstructions?.[0]?.steps || [] ;
-  const dietitas = recipes.diets?.join(', ') || "";
+  const currentSteps = recipes.analyzedInstructions?.[0]?.steps || [];
+  const dietitas = recipes.diets?.join(", ") || "";
 
   return (
     <div className={style.container}>
       <div className={style.infoColumn}>
         <h1>{recipes.title}</h1>
+        <div className={style.dietitas}>
+        <div className={style.healthScore}>
+        <h4>⭐ {recipes.healthScore}</h4>
+        </div>
+          <h4>Diets:{dietitas}</h4>
+          </div>
         <img src={recipes.image} alt={recipes.title} />
         <h3>{recipes.id}</h3>
         <article dangerouslySetInnerHTML={{ __html: recipes.summary }} />
       </div>
-      <div className={style.stepsColumn}></div>
+      <div className={style.stepsContainer}></div>
       {currentSteps.map((step) => (
-        <div className={`${style.step} step`} key={step.number}>
-          <h3 className={`${style.stepNumber} step-number`}>
+        <div className={style.step} key={step.number}>
+          <h3 className={style.stepNumber}>
             Step:{step.number}
           </h3>
-          <p className={`${style.stepContent} step-content`}>{step.step}</p>
+          <p className={style.stepContent}>{step.step}</p>
         </div>
       ))}
-      <h3>{dietitas}</h3>
-      <h3>{recipes.healthScore}</h3>
     </div>
   );
 }

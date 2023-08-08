@@ -13,7 +13,14 @@ export default function Form() {
 
   const navigate = useNavigate();
 
-  const [error, setError] = useState({});
+  const [error, setError] = useState({
+    title: "",
+    summary: "",
+    healthScore: "",
+    analyzedInstructions: "",
+    diets: "",
+    image: ""
+  });
   const [form, setForm] = useState({
     title: "",
     summary: "",
@@ -147,6 +154,9 @@ export default function Form() {
     image,
   }) => {
     const newError = {...error}; // Crear un nuevo objeto para almacenar los errores para cada campo
+    const parsedScore = parseInt(healthScore, 10)
+
+
 
     if (!title) {
       newError.title = "Title cannot be empty";
@@ -156,6 +166,8 @@ export default function Form() {
       newError.title = "Title must be at least 3 characters long";
     } else if (/[^\w\s]/.test(title)) {
       newError.title = "Title contains invalid characters";
+    }else{
+      newError.title = "";
     }
 
     if (!summary) {
@@ -166,6 +178,8 @@ export default function Form() {
       newError.summary = "Summary cannot contain HTML tags";
     } else if (summary.length < 10) {
       newError.summary = "Summary must be at least 10 characters long";
+    } else{
+      newError.summary= "";
     }
 
     if (!healthScore) {
@@ -173,11 +187,10 @@ export default function Form() {
     } else if (!/^\d+$/.test(healthScore)) {
       newError.healthScore =
         "Invalid health score. Must be an integer between 0 and 100.";
-    } else {
-      const parsedScore = parseInt(healthScore, 10);
-      if (parsedScore < 0 || parsedScore > 100) {
-        newError.healthScore = "The health score must be between 0 and 100.";
-      }
+    } else if(parsedScore < 0 || parsedScore > 100){  
+        newError.healthScore = "The health score must be between 0 and 100.";    
+    } else{
+      newError.healthScore = "";
     }
 
     if (!image) {
@@ -186,12 +199,16 @@ export default function Form() {
       newError.image = "Invalid image URL";
     } else if (image.length > 300) {
       newError.image = "Image URL cannot exceed 300 characters";
+    }else{
+      newError.image = "";
     }
 
     if (!diets || diets.length === 0) {
       newError.diets = "Please select at least one diet";
     } else if (diets.length > 6) {
       newError.diets = "Please select a maximum of 6 diets";
+    }else{
+      newError.diets = "";
     }
 
     if (!analyzedInstructions) {
