@@ -15,6 +15,9 @@ export default function Card({ title, healthScore, image, id, diets }) {
         <img src={image} alt={title} />
       </Link>
       </div>
+      <div>
+        <h5>Diets:</h5>
+      </div>
       <div >
         {diets.map((diet, index) => (
           <span key={index}>{diet}</span>
